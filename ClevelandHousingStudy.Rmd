@@ -1,30 +1,165 @@
 ---
-title: "Cleveland Housing Study"
-author: "CD MIS & GIS Office"
+title: "Cleveland Housing Study-Population"
 date: "03/14/2022"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+options(knitr.duplicate.label = "allow")
+
+options(scipen=3)
+options(knitr.table.format = "latex")
+
+
+library(tidycensus)
+library(tidyverse)
+library(plotly)
+library(censusapi)
+library(censusGeography)
+library(dplyr)
+library(DT)
+
+
+# my census API key: "75789d63464567dcba5b8edb7500fe6148ff3440"
+
+# Add key to .Renviron
+Sys.setenv(CENSUS_KEY="75789d63464567dcba5b8edb7500fe6148ff3440")
+
+# Reload .Renviron
+readRenviron("~/.Renviron")
+# Check to see that the expected key is output in your R console
+
+Sys.getenv("CENSUS_KEY")
+
+myvar = "B01001_001"
+
+cnty_citypop <- get_acs(
+  geography = "county subdivision", 
+  variables = c(totalpop=myvar), 
+  state = "OH", 
+  county = "Cuyahoga",
+  year = 2019,
+  output = "wide"
+)%>%
+  mutate(NAME = str_remove(NAME, ", Cuyahoga County, Ohio"))
+
+cnty_citypop
+cnty_citypop = cnty_citypop[cnty_citypop$GEOID > "3903500000",]
+cnty_citypop
+
+
+cnty_citypop10 <- get_acs(
+  geography = "county subdivision", 
+  variables = c(totalpop10=myvar), 
+  state = "OH", 
+  county = "Cuyahoga",
+  year = 2010,
+  output = "wide"
+)
+
+cnty_citypop10 =select(cnty_citypop10, 1, 3:4)
+cnty_citypop10
+
+cnty_citypop15 <- get_acs(
+  geography = "county subdivision", 
+  variables = c(totalpop15=myvar), 
+  state = "OH", 
+  county = "Cuyahoga",
+  year = 2015,
+  output = "wide"
+)
+
+cnty_citypop15 =select(cnty_citypop15, 1, 3:4)
+cnty_citypop15
+
+
+#---------------- how to compare two ACH --------------------------------------------------
+mypop <- merge(cnty_citypop15, cnty_citypop, by = "GEOID") # NA's match, so 6 rows
+mypop
+
+mypop$popchange <-round((mypop$totalpopE-mypop$totalpop15E)/mypop$totalpopE * 100, 2)
+mypop
+
+
+mypop10 <- merge(cnty_citypop10, cnty_citypop, by = "GEOID") # NA's match, so 6 rows
+mypop10
+
+mypop10$popchange <-round((mypop10$totalpopE-mypop10$totalpop10E)/mypop$totalpopE * 100, 2)
+mypop10
+
+
+
+myplot <- ggplot(mypop, aes(x = popchange, y = reorder(NAME, popchange))) + 
+  geom_col() + 
+  labs(title = "Population Percent Change from 2015 to 2019", 
+       subtitle = "Cities in Cuyahoga", 
+       x = "Percentage Change (%)", 
+       y = "") + 
+  theme_minimal(base_size = 9)+
+  geom_vline(xintercept=-1.38, color="orange", size=1) 
+
+
+
+myplot10 <- ggplot(mypop10, aes(x = popchange, y = reorder(NAME, popchange))) + 
+  geom_col() + 
+  labs(title = "Population Percent Change from 2010 to 2019", 
+       subtitle = "Cities in Cuyahoga", 
+       x = "Percentage Change (%)", 
+       y = "") + 
+  theme_minimal(base_size = 9)+
+  geom_vline(xintercept=-6.21, color="orange", size=1) 
+
+mytable <- merge(mypop, mypop10, by = "GEOID") 
+
+#-------------------- select fields ------------------------------------------------
+#dplyr
+
+
+mytable <- mytable %>%
+  select(NAME.x, totalpop10E, totalpop15E, totalpopE.y, popchange.y, popchange.x)
+
+names(mytable)[1] <- 'City'
+names(mytable)[2] <- 'TotalPop2010'
+names(mytable)[3] <- 'TotalPop2015'
+names(mytable)[4] <- 'TotalPop2019'
+names(mytable)[5] <- '%Change10-19'
+names(mytable)[6] <- '%Change15-19'
+
+
 ```
 
-## R Markdown
+The city of Cleveland has a long-term population shrinking along with the rust belt cities in northeast Ohio. Cleveland lost 6.21 % of the total population between 2010 and 2019, ranked 6th city in Cuyahoga County. The population loss was 1.38% between 2015 and 2019. It was the 27th rank among 58 cities in Cuyahoga County. Past five years, Cleveland city has experienced less population loss than in 2010 to 2015.
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+```{r echo=FALSE, results="asis"}
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+ mytable%>%
+  datatable(extensions = 'Buttons',
+            options = list(dom = 'Blfrtip',
+                           buttons = c('excel', 'pdf', 'print'),
+                           lengthMenu = list(c(25,50,-1),
+                                             c(25,50,"All"))),
+            rownames = FALSE,
+            caption ='population chang from 2010, 2015 to 2019')
+  
 
-```{r cars}
-summary(cars)
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
-plot(pressure)
+myplot10
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+```{r presure, echo=FALSE}
+
+myplot
+
+
+```
+
+Source: Census ACH 5 Year Estimate 2010, 2015, and 2019
+Published: CD MIS & GIS Office 
