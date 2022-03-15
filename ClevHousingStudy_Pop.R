@@ -113,7 +113,7 @@ names(mytable)[6] <- '%Change15-19'
 
 
 #---------------------------------------------------------------------------------------------- 
-#Visualizing over time population total population
+# Visualizing over time population total population
 
 total_population_10 <- get_decennial(
   geography = "county subdivision", 
@@ -296,25 +296,93 @@ g3
 #----------------------------------------------------------------------------------
 # 3 Race distribution
 
+years <- 2010:2019
+names(years) <- years
+years
 
-cnty_age <- get_estimates(
-  geography = "County",
-  state = "OH",
-  product = "characteristics",
-  breakdown = c("SEX", "AGEGROUP"),
-  breakdown_labels = TRUE,
-  year = 2019
-) 
+race_vars <- c(
+  White = "B03002_003",
+  Black = "B03002_004",
+  Native = "B03002_005",
+  Asian = "B03002_006",
+  NonHIPI = "B03002_007",
+  Hispanic = "B03002_012"
+)
 
-cnty_age_filtered <- filter(cnty_age, (str_detect(AGEGROUP, "^Age") & GEOID == "39035"),
-                            SEX != "Both sexes") %>%
-  mutate(value = ifelse(SEX == "Male", -value, value))
+cnty_value <- map_dfr(years, ~{
+  get_acs(
+    geography = "county",
+    variables = race_vars,
+    summary_var = "B03002_001",
+    state = "OH",
+    county = "Cuyahoga",
+    year = .x,
+    survey = "acs5"
+  ) %>%
+    mutate(percent = round(100 * (estimate / summary_est),2))
+}, .id = "year")
 
-ggplot(cnty_filtered, aes(x = value, y = AGEGROUP, fill = SEX)) + 
-  geom_col()
+#cnty_value%>% 
+#  mutate(year = as.factor(year))
+cnty_value
+
+g1 <- ggplot(cnty_value, aes(x=year, y= percent, colour=variable)) + 
+  geom_line(aes(group = variable))+
+  geom_text(data = cnty_value, aes(x= year,label= percent), size=3, color="black")+
+  theme_minimal(base_size = 10) + 
+  scale_y_continuous(labels = scales::number) + 
+  labs(title = "Race Distribution in Cuyahoga Couty, Ohio from 2010 to 2019",
+       x = "Year",
+       y = "ACS estimate (%)",
+       caption = "Source: ACH 5 Year Estimae from 2010 to 2019")
+g1
 
 
+cle_value <- map_dfr(years, ~{
+  get_acs(
+    geography = "county subdivision",
+    variables = race_vars,
+    summary_var = "B03002_001",
+    state = "OH",
+    county = "Cuyahoga",
+    year = .x,
+    survey = "acs5"
+  )%>% 
+    filter (GEOID == "3903516000")%>% 
+    mutate(NAME = str_remove(NAME, ", Cuyahoga County, Ohio"))%>%
+    mutate(percent = round(100 * (estimate / summary_est),2)) 
+}, .id = "year")
 
+cle_value
+
+g2 <- ggplot(cle_value, aes(x=year, y= percent, colour=variable)) + 
+  geom_line(aes(group = variable))+
+  geom_text(data = cle_value, aes(x= year,label= percent), size=3, color="black")+
+  theme_minimal(base_size = 10) + 
+  scale_y_continuous(labels = scales::number) + 
+  labs(title = "Race Distribution in Cleveland, Cuyahoga Couty, Ohio from 2010 to 2019",
+       x = "Year",
+       y = "ACS estimate (%)",
+       caption = "Source: ACH 5 Year Estimae from 2010 to 2019")
+
+g2
+
+g3 <- ggplot(cle_value, aes(x=year, y= estimate, colour=variable)) + 
+  geom_line(aes(group = variable))+
+  geom_text(data = cle_value, aes(x= year,label= estimate), size=3, color="black")+
+  theme_minimal(base_size = 10) + 
+  scale_y_continuous(labels = scales::number) + 
+  labs(title = "Race Distribution in Cleveland, Cuyahoga Couty, Ohio from 2010 to 2019",
+       x = "Year",
+       y = "ACS estimate",
+       caption = "Source: ACH 5 Year Estimae from 2010 to 2019")
+
+
+g3
+
+#install.packages("patchwork")
+#library(patchwork)
+g2 +g3
 
 
 
@@ -416,11 +484,11 @@ g3 | (g2 / g1)
 
 #----------------------------
 # 4-2 median household income 
-# B19049_001 Estimate!!Median household income in the past 12 months (in 2019 inflation-adjusted dollars) --!!Total:
+# B19049_001 Estimate!!Median household income in the past 12 months (in 2019 inflation-adjusted dollars) --!!Total:**
 # B22008_001 Estimate!!Median household income in the past 12 months (in 2019 inflation-adjusted dollars)--!!Total:
 # B25119_002 Estimate!!Median household income in the past 12 months (in 2019 inflation-adjusted dollars) --!!Total:!!Owner occupied (dollars)
 # B25119_003 Estimate!!Median household income in the past 12 months (in 2019 inflation-adjusted dollars) --!!Total:!!Renter occupied (dollars)
-
+# B19013_001 Estimate!!Median household income in the past 12 months (in 2019 inflation-adjusted dollars) ?? **
 years <- 2010:2019
 names(years) <- years
 years
@@ -428,7 +496,7 @@ years
 cnty_value <- map_dfr(years, ~{
   get_acs(
     geography = "county",
-    variables = "B19049_001",
+    variables = "B19013_001",
     state = "OH",
     county = "Cuyahoga",
     year = .x,
@@ -586,5 +654,40 @@ g3
 #library(patchwork)
 g3 | (g2 / g1)
 
+#-------------------------------------------------------------------------------
+# median house hold income map
+## I need this 
+## ----beeswarm---------------------------------------
+#install.packages("ggbeeswarm")
 
+library(ggbeeswarm)
+
+race_income <- get_acs(
+  geography = "tract",
+  state = "OH",
+  county = "Cuyahoga",
+  variables = c(White = "B03002_003",
+                Black = "B03002_004",
+                Asian = "B03002_006",
+                Hispanic = "B03002_012"),
+  summary_var = "B19013_001"
+) %>%
+  group_by(GEOID) %>%
+  filter(estimate == max(estimate, na.rm = TRUE)) %>%
+  ungroup() %>%
+  filter(estimate != 0)
+
+race_income_plot<- ggplot(race_income, aes(x = variable, y = summary_est, color = summary_est)) +
+  geom_quasirandom(alpha = 0.5) +
+  coord_flip() +
+  theme_minimal() +
+  scale_color_viridis_c(guide = FALSE) +
+  scale_y_continuous(labels = scales::dollar) +
+  labs(x = "Largest group in Census tract",
+       y = "Median household income",
+       title = "Household income distribution by largest racial/ethnic group",
+       subtitle = "Census tracts, Cleveland City",
+       caption = "Data source: 2015-2019 ACS")
+
+race_income_plot
 
