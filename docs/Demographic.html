@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Demographic</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CRA Cleveland Housing Survey</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="Demographic.html">Demographic</a>
+</li>
+<li>
+  <a href="Socioeconomic.html">Socioeconomic</a>
+</li>
+<li>
+  <a href="Housing.html">Housing</a>
+</li>
+<li>
+  <a href="Industry.html">Major Industry</a>
+</li>
+<li>
+  <a href="Summary.html">Summary</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:&lt;chong@clevelandohio.gov&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Demographic</h1>
+
+</div>
+
+
+<div id="population" class="section level2">
+<h2>1 population</h2>
+<p>2015 to 2019/2020 - percent change past five years in Cities in the
+Cuyahoga County</p>
+<template id="6c3d819e-2366-4ed5-b411-23fcf83309e6"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-72c9a5f6{}.cl-72bfc2b6{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-72bfe8a4{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-72bfe8a5{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-72c0ab72{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-72c0ab73{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-72c0ab74{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-72c0ab75{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-72c0ab76{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-72c0ab77{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-72c9a5f6'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab77"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">City</span></p></td><td class="cl-72c0ab76"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">TotalPop2010</span></p></td><td class="cl-72c0ab76"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">TotalPop2015</span></p></td><td class="cl-72c0ab76"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">TotalPop2019</span></p></td><td class="cl-72c0ab76"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">%Change10-19</span></p></td><td class="cl-72c0ab76"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">%Change15-19</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Bay Village city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">15,647</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">15,469</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">15,325</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-2.10</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.94</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Beachwood city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">11,932</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">11,801</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">11,663</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-2.31</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.18</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Bedford city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">13,201</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">12,868</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">12,631</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-4.51</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.88</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Bedford Heights city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">10,796</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">10,665</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">10,565</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-2.19</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.95</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Bentleyville village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1,058</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">938</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">902</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-17.29</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-3.99</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Berea city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">18,981</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">19,001</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">18,788</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.03</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.13</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Bratenahl village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1,369</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1,153</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1,379</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">0.73</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">16.39</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Brecksville city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">13,550</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">13,516</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">13,537</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.10</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">0.16</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Broadview Heights city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">18,674</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">19,268</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">19,195</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">2.71</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.38</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Brooklyn city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">11,156</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">11,002</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">10,773</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-3.56</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-2.13</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Brooklyn Heights village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1,494</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1,526</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1,615</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">7.49</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">5.51</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Brook Park city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">19,472</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">18,956</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">18,617</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-4.59</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.82</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Chagrin Falls township</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">4,193</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">4,177</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">4,108</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-2.07</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.68</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Cleveland city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">409,221</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">390,584</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">385,282</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-6.21</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.38</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Cleveland Heights city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">46,797</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">45,388</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">44,571</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-4.99</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.83</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Cuyahoga Heights village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">547</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">616</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">677</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">19.20</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">9.01</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">East Cleveland city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">19,426</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">17,519</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">17,200</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-12.94</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.85</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Euclid city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">49,338</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">48,105</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">47,159</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-4.62</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-2.01</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Fairview Park city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">16,894</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">16,552</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">16,303</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-3.63</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.53</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Garfield Heights city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">29,058</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">28,365</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">27,814</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-4.47</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.98</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Gates Mills village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">2,171</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">2,179</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">2,189</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">0.82</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">0.46</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Glenwillow village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">851</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1,010</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1,088</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">21.78</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">7.17</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Highland Heights city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">8,245</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">8,337</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">8,390</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1.73</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">0.63</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Highland Hills village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1,526</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">950</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">873</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-74.80</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-8.82</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Hunting Valley village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">506</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">704</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">605</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">16.36</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-16.36</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Independence city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">7,079</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">7,144</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">7,169</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1.26</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">0.35</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Lakewood city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">52,674</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">51,155</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">50,259</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-4.81</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.78</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Linndale village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">136</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">159</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">160</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">15.00</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">0.62</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Lyndhurst city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">14,144</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">13,792</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">13,533</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-4.51</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.91</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Maple Heights city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">23,575</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">22,792</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">22,383</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-5.33</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.83</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Mayfield village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">3,427</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">3,421</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">3,372</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.63</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.45</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Mayfield Heights city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">19,109</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">18,918</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">18,669</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-2.36</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.33</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Middleburg Heights city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">15,798</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">15,790</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">15,573</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.44</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.39</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Moreland Hills village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">3,309</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">3,305</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">3,306</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.09</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">0.03</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Newburgh Heights village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">2,108</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">2,012</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1,718</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-22.70</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-17.11</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">North Olmsted city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">32,792</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">32,248</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">31,710</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-3.41</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.70</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">North Randall village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">867</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">998</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1,106</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">21.61</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">9.76</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">North Royalton city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">29,965</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">30,321</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">30,252</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">0.95</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.23</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Oakwood village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">3,652</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">3,689</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">3,668</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">0.44</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.57</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Olmsted township</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">12,931</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">13,320</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">13,422</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">3.66</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">0.76</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Olmsted Falls city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">8,752</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">8,923</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">8,883</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1.47</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.45</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Orange village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">3,286</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">3,288</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">3,276</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.31</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.37</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Parma city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">81,894</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">80,380</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">79,091</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-3.54</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.63</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Parma Heights city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">20,784</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">20,409</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">20,045</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-3.69</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.82</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Pepper Pike city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">5,951</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">6,115</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">6,269</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">5.07</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">2.46</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Richmond Heights city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">10,570</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">10,485</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">10,406</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.58</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.76</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Rocky River city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">20,196</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">20,187</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">20,198</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">0.01</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">0.05</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Seven Hills city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">11,797</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">11,716</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">11,638</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.37</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.67</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Shaker Heights city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">28,458</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">27,934</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">27,387</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-3.91</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-2.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Solon city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">22,983</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">23,114</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">22,947</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.16</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.73</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">South Euclid city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">22,327</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">21,971</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">21,572</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-3.50</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.85</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Strongsville city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">44,360</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">44,649</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">44,719</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">0.80</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">0.16</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">University Heights city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">13,573</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">13,331</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">13,025</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-4.21</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-2.35</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Valley View village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1,946</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">1,956</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">2,024</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">3.85</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">3.36</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Walton Hills village</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">2,259</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">2,288</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">2,246</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.58</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.87</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Warrensville Heights city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">13,749</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">13,336</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">13,203</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-4.14</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-1.01</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab73"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Westlake city</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">32,350</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">32,469</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">32,275</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.23</span></p></td><td class="cl-72c0ab72"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-0.60</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-72c0ab75"><p class="cl-72bfe8a4"><span class="cl-72bfc2b6">Woodmere village</span></p></td><td class="cl-72c0ab74"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">921</span></p></td><td class="cl-72c0ab74"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">925</span></p></td><td class="cl-72c0ab74"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">698</span></p></td><td class="cl-72c0ab74"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-31.95</span></p></td><td class="cl-72c0ab74"><p class="cl-72bfe8a5"><span class="cl-72bfc2b6">-32.52</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="e969a1a7-ce9b-4065-84ae-44259761abb2"></div>
+<script>
+var dest = document.getElementById("e969a1a7-ce9b-4065-84ae-44259761abb2");
+var template = document.getElementById("6c3d819e-2366-4ed5-b411-23fcf83309e6");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p><img src="Demographic_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="median-age" class="section level2">
+<h2>2 median age</h2>
+<p>The median age of Cleveland (30.3) is younger than that of Cuyahoga
+County (40.1) in 2019. The young group tends to move into the central
+City rather than suburban. They are less dependent on school quality and
+take advantage of the cultural opportunities that City can provide.</p>
+<p><img src="Demographic_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="Demographic_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="race-distribution" class="section level2">
+<h2>3 Race distribution</h2>
+<p><img src="Demographic_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="Demographic_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
